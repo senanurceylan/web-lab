@@ -1,6 +1,7 @@
 function App() {
   return (
     <>
+    <p>Formu doldurup benimle iletişime geçebilirsin.</p>
       {/* Skip link */}
       <a href="#main" className="skip-link">
         İçeriğe atla
