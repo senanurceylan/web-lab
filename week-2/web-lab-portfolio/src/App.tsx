@@ -7,23 +7,17 @@ function App() {
         İçeriğe atla
       </a>
 
-      <header>
-        <h1>Sena Nur Ceylan</h1>
+    <header className="site-header">
+  <div className="header-inner">
+    <h1 className="logo">Sena Nur Ceylan</h1>
 
-        <nav aria-label="Ana Menü">
-          <ul>
-            <li>
-              <a href="#about">Hakkımda</a>
-            </li>
-            <li>
-              <a href="#projects">Projeler</a>
-            </li>
-            <li>
-              <a href="#contact">İletişim</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
+    <nav aria-label="Ana Menü" className="site-nav">
+      <ul className="nav-list">
+        ...
+      </ul>
+    </nav>
+  </div>
+</header>
 
       <main id="main">
         <section id="about" aria-labelledby="about-title">
@@ -43,9 +37,14 @@ function App() {
             <h3 id="p2-title">Navidya</h3>
             <p>Şehir/ülke keşfi ve öneri sunan bir web uygulaması.</p>
           </article>
-        </section>
+       <section id="projects" aria-labelledby="projects-title">
+  <h2 id="projects-title">Projeler</h2>
 
-        <section id="contact" aria-labelledby="contact-title">
+  <div className="projects-grid">
+    <article className="project-card" aria-labelledby="p1-title">...</article>
+    <article className="project-card" aria-labelledby="p2-title">...</article>
+  </div>
+</section>
           <h2 id="contact-title">İletişim</h2>
 
           <form noValidate>
