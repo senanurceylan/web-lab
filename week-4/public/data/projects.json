@@ -1,0 +1,82 @@
+[
+  {
+    "id": "proj-001",
+    "title": "Kampüs Etkinlik Takvimi",
+    "description": "Öğrenci kulüplerinin etkinliklerini listeleyen, filtreleme ve hatırlatıcı bildirimleri destekleyen tek sayfa uygulaması. Erişilebilir takvim bileşenleri ve responsive grid kullanıldı.",
+    "tech": ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    "year": 2024,
+    "category": "frontend",
+    "featured": true,
+    "image": ""
+  },
+  {
+    "id": "proj-002",
+    "title": "REST Ürün Kataloğu API",
+    "description": "Sayfalama, sıralama ve kategori filtreleri sunan ürün kataloğu backend servisi. OpenAPI dokümantasyonu ve birim testlerle birlikte teslim edildi.",
+    "tech": ["Node.js", "Express", "PostgreSQL", "Prisma"],
+    "year": 2023,
+    "category": "backend",
+    "featured": true,
+    "image": ""
+  },
+  {
+    "id": "proj-003",
+    "title": "Eğitim İçerik Yönetimi",
+    "description": "Eğitmenlerin ders materyali yükleyip sürümleyebildiği, öğrencilerin ilerleme takibinin yapıldığı tam yığın platform. Rol tabanlı yetkilendirme ve JWT oturum yönetimi içerir.",
+    "tech": ["React", "Node.js", "MongoDB", "Express", "JWT"],
+    "year": 2024,
+    "category": "fullstack",
+    "featured": true,
+    "image": ""
+  },
+  {
+    "id": "proj-004",
+    "title": "Hava Durumu Panosu",
+    "description": "Konuma göre anlık hava verisi gösteren, favori şehir listesi ve grafik özetleri olan arayüz. Harici API entegrasyonu ve hata durumları için kullanıcı dostu geri bildirimler.",
+    "tech": ["React", "JavaScript", "Chart.js", "CSS Modules"],
+    "year": 2023,
+    "category": "frontend",
+    "featured": false,
+    "image": ""
+  },
+  {
+    "id": "proj-005",
+    "title": "Dosya Yükleme ve Tarama Servisi",
+    "description": "Yüklenen dosyaları virüs taraması kuyruğuna alan, sonuçları webhook ile bildiren mikro servis. Yüksek yük altında kuyruk işleyişi ve yeniden deneme politikaları tanımlandı.",
+    "tech": ["Python", "FastAPI", "Redis", "Docker"],
+    "year": 2024,
+    "category": "backend",
+    "featured": false,
+    "image": ""
+  },
+  {
+    "id": "proj-006",
+    "title": "Küçük İşletme Faturalama",
+    "description": "Müşteri ve fatura kaydı, PDF çıktısı ve ödeme durumu takibi sunan web uygulaması. Veri doğrulama hem istemci hem sunucu tarafında yapılır.",
+    "tech": ["Vue 3", "Pinia", "Node.js", "SQLite"],
+    "year": 2023,
+    "category": "fullstack",
+    "featured": false,
+    "image": ""
+  },
+  {
+    "id": "proj-007",
+    "title": "Portföy Arayüz Tasarım Sistemi",
+    "description": "Tekrar kullanılabilir bileşen kütüphanesi, tema değişkenleri ve Storybook ile dokümante edilmiş UI katmanı. Dark mode ve odak halkaları standartlara uygun.",
+    "tech": ["React", "Tailwind CSS", "Storybook", "Vitest"],
+    "year": 2025,
+    "category": "frontend",
+    "featured": false,
+    "image": ""
+  },
+  {
+    "id": "proj-008",
+    "title": "Randevu ve Bildirim Orkestrasyonu",
+    "description": "Randevu oluşturma, e-posta ve SMS hatırlatıcıları ile entegre tam yığın uygulama. Çakışma kontrolü ve zaman dilimi dönüşümleri sunucu tarafında hesaplanır.",
+    "tech": ["Next.js", "tRPC", "PostgreSQL", "BullMQ"],
+    "year": 2025,
+    "category": "fullstack",
+    "featured": true,
+    "image": ""
+  }
+]
