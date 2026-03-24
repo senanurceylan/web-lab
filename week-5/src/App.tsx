@@ -1,3 +1,4 @@
+import type { ChangeEvent, ReactNode } from "react"
 import { useState, useEffect, useMemo } from "react"
 import { Routes, Route, Link } from "react-router-dom"
 import ThemeToggle from "./components/ThemeToggle"
@@ -6,9 +7,20 @@ import Input from "./components/Input"
 import Alert from "./components/Alert"
 import UIKit from "./pages/UIKit"
 import { fetchProjects } from "./services/projectService"
-import { applyFilters } from "./utils/projectHelpers"
+import {
+  applyFilters,
+  parseSortField,
+  parseSortOrder,
+  type SortField,
+  type SortOrder,
+} from "./utils/projectHelpers"
+import {
+  parseCategoryFilter,
+  type CategoryFilter,
+  type Project,
+} from "./types/project"
 
-function Layout({ children }) {
+function Layout({ children }: { children: ReactNode }) {
   return (
     <>
       <a
@@ -45,13 +57,13 @@ const selectClassName =
   "w-full px-3 py-2 rounded-lg border bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
 
 function HomePage() {
-  const [projects, setProjects] = useState([])
-  const [search, setSearch] = useState("")
-  const [category, setCategory] = useState("all")
-  const [sortField, setSortField] = useState("title")
-  const [sortOrder, setSortOrder] = useState("asc")
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [projects, setProjects] = useState<Project[]>([])
+  const [search, setSearch] = useState<string>("")
+  const [category, setCategory] = useState<CategoryFilter>("all")
+  const [sortField, setSortField] = useState<SortField>("title")
+  const [sortOrder, setSortOrder] = useState<SortOrder>("asc")
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     let cancelled = false
@@ -62,11 +74,13 @@ function HomePage() {
       try {
         const data = await fetchProjects()
         if (!cancelled) {
-          setProjects(Array.isArray(data) ? data : [])
+          setProjects(data)
         }
       } catch (err) {
         if (!cancelled) {
-          setError(err?.message ?? "Projeler yüklenemedi.")
+          setError(
+            err instanceof Error ? err.message : "Projeler yüklenemedi.",
+          )
           setProjects([])
         }
       } finally {
@@ -82,7 +96,7 @@ function HomePage() {
     }
   }, [])
 
-  const filteredProjects = useMemo(
+  const filteredProjects = useMemo<Project[]>(
     () => applyFilters(projects, { search, category, sortField, sortOrder }),
     [projects, search, category, sortField, sortOrder],
   )
@@ -119,7 +133,9 @@ function HomePage() {
               label="Ara"
               placeholder="Başlık, açıklama veya teknoloji…"
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setSearch(e.target.value)
+              }
               disabled={filtersDisabled}
             />
           </div>
@@ -131,7 +147,9 @@ function HomePage() {
               id="filter-category"
               className={selectClassName}
               value={category}
-              onChange={(e) => setCategory(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+                setCategory(parseCategoryFilter(e.target.value))
+              }
               disabled={filtersDisabled}
               aria-label="Kategoriye göre filtrele"
             >
@@ -150,7 +168,9 @@ function HomePage() {
                 id="sort-field"
                 className={selectClassName}
                 value={sortField}
-                onChange={(e) => setSortField(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+                  setSortField(parseSortField(e.target.value))
+                }
                 disabled={filtersDisabled}
                 aria-label="Sıralama alanı"
               >
@@ -166,7 +186,9 @@ function HomePage() {
                 id="sort-order"
                 className={selectClassName}
                 value={sortOrder}
-                onChange={(e) => setSortOrder(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+                  setSortOrder(parseSortOrder(e.target.value))
+                }
                 disabled={filtersDisabled}
                 aria-label="Sıralama yönü"
               >
@@ -191,7 +213,7 @@ function HomePage() {
 
         {!loading && !error && filteredProjects.length > 0 && (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {filteredProjects.map((p) => (
+            {filteredProjects.map((p: Project) => (
               <Card
                 key={p.id}
                 variant="outlined"
@@ -217,7 +239,7 @@ function HomePage() {
                   <span className="uppercase tracking-wide">{p.category}</span>
                 </div>
                 <ul className="flex flex-wrap gap-1.5 list-none p-0 m-0" aria-label="Kullanılan teknolojiler">
-                  {(Array.isArray(p.tech) ? p.tech : []).map((tech, idx) => (
+                  {p.tech.map((tech, idx) => (
                     <li
                       key={`${p.id}-tech-${idx}`}
                       className="text-xs px-2 py-0.5 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
