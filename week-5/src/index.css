@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #1E3A8A;
+  --color-secondary: #2563EB;
+  --color-accent: #7C3AED;
+  --color-surface: #F9FAFB;
+  --color-muted: #6B7280;
+  --color-error: #DC2626;
+  --color-success: #16A34A;
+  --font-family-sans: system-ui, -apple-system, sans-serif;
+  --font-family-mono: "Fira Code", "Consolas", monospace;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-sans);
+  background-color: #fff;
+}
+
+.dark body {
+  background-color: #111827;
+  color: #f3f4f6;
+}
+
+a[href="#main-content"].skip-link:focus {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 9999;
+  width: auto;
+  height: auto;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
